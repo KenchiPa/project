@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # 프로젝트 루트 디렉토리의 templates 디렉토리 추가
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +131,29 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+# 개발 중인 앱에서 사용할 정적 파일.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+# 배포 시 정적 파일들을 모아놓은 경로.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# 정적 파일들을 찾는 방법을 설정.
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+########################################################################
+
+# 마크다운 필드 사용을 위한 설정
+MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.fenced_code',  # 코드 블록 지원
+    'markdown.extensions.codehilite',  # 하이라이팅
+]
 
 # Auth
 AUTH_USER_MODEL = "users.User"
