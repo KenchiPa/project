@@ -31,7 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 CUSTOM_APPS = [
+    'common.apps.CommonConfig',
     'users.apps.UsersConfig',
+    'board1.apps.Board1Config',
+    'board2.apps.Board2Config',
+    'board3.apps.Board3Config',
 ]
 
 SYSTEM_APPS = [
