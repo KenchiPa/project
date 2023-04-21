@@ -22,8 +22,12 @@ urlpatterns = [
     # Admin page path setting
     path("admin/", admin.site.urls),
  
-    # Index Page
-    path('', views.index, name='index'),
+    # Page
+    path("", views.index, name='index'),
+    path("login/", views.login_view, name='login_view'),
+
+    # Auth
+    path("api/v1/users/", include("users.urls")),
 
     # Board
     path("board1/", include("board1.urls")),

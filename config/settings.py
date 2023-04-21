@@ -37,6 +37,8 @@ CUSTOM_APPS = [
     'board1.apps.Board1Config',
     'board2.apps.Board2Config',
     'board3.apps.Board3Config',
+    'rest_framework',
+    # 'rest_framework_simplejwt',
 ]
 
 SYSTEM_APPS = [
@@ -157,3 +159,15 @@ MARKDOWN_EXTENSIONS = [
 
 # Auth
 AUTH_USER_MODEL = "users.User"
+
+# REST FRAMEWORK
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#         # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ],
+# }
+
