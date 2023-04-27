@@ -10,13 +10,13 @@
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li>
-            <a href="#" class="nav-link px-2 " style="color: #EEC346; margin-right: 50px;">Home</a>
+            <a href="/" class="nav-link px-2 " style="color: #EEC346; margin-right: 50px;">Home</a>
           </li>
-          {% if user.is_authenticated %}
+          {% if user.is_authenticated and user.is_manager %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;">게시판 관리</a>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">게시판1</a></li>
+                <li><a class="dropdown-item" href="{% url 'board1:board1_list' %}">게시판1</a></li>
                 <li><a class="dropdown-item" href="#">게시판2</a></li>
                 <li><a class="dropdown-item" href="#">게시판3</a></li>
               </ul>
@@ -24,9 +24,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;">사용자 관리</a>
             <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">사용자 계정 등록</a></li>
-              <li><a class="dropdown-item" href="#">사용자 로그인 히스토리 조회</a></li>
-              <li><a class="dropdown-item" href="#">사용자 조회</a></li>
+              <li><a class="dropdown-item" href="{% url 'common:signup' %}">사용자 계정 등록</a></li>
+              <li><a class="dropdown-item" href="{% url 'users:history_list' %}">사용자 로그인 히스토리 조회</a></li>
+              <li><a class="dropdown-item" href="{% url 'users:user_list' %}">사용자 조회</a></li>
             </ul>
           </li>
           {% endif %}
@@ -34,14 +34,15 @@
           <div class="text-end">
             {% if user.is_authenticated %}
             <div style="margin-bottom: 5px;">{{user.username}}님 환영합니다.</div>
-            <button type="button" class="btn btn-outline-light me-2">비밀번호 변경</button>
-            <button type="button" class="btn btn-warning">로그아웃</button>
+            <a type="button" class="btn btn-outline-light me-2" href="{% url 'common:change_password' %}">비밀번호 변경</a>
+            <a type="button" class="btn btn-warning" href="{% url 'common:logout' %}">로그아웃</a>
             {% else %}
-            <a type="button" class="btn btn-warning" href="login/">로그인</a>
+            <a type="button" class="btn btn-warning" href="{% url 'common:login' %}">로그인</a>
             {% endif %}
           </div>
       </div>
     </div>
   </header>
+  
 
   <!-- HEADER END -->

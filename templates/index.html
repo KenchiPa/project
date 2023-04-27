@@ -13,28 +13,37 @@
     <!-- style.js -->
     <script src="/static/js/style.js"></script>
   </head>
-  <body>
+  <body style="background-image: url('/static/img/minimalist.jpg'); background-repeat: no-repeat; background-size: cover;">
     <!-- INCLUDE HEADER -->
     {% include 'includes/header.html' %}
 
     <!-- CONTENT START -->
     {% if user.is_authenticated %}
     
+    <!-- <h2>Board 1</h2>
+    {% if board1 %}
+        <ul>
+        {% for post in board1 %}
+            <li>{{ post.title }} - {{ post.author }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts found.</p>
+    {% endif %} -->
+
+
     {% else %}
       <!-- 비회원시 보이는 화면 -->
-      <div class="px-4 py-5 my-5 text-center">
+      <div class="px-4 py-5 my-5 text-center" >
         <h1 class="display-5 fw-bold" style="margin-bottom: 50px;">업무용 게시판</h1>
         <div class="col-lg-6 mx-auto">
           <p class="lead mb-4"><h3>회원 전용 서비스입니다. 로그인 후 이용 부탁드리겠습니다.</h3><br></p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a type="button" class="btn btn-warning btn-lg px-4 gap-3" href="login/">로그인</a>
+            <a type="button" class="btn btn-warning btn-lg px-4 gap-3" href="{% url 'common:login' %}">로그인</a>
           </div>
             <br>회원신청 및 접속불가에 대한 문의 사항은 hrpark@expernet.co.kr 로 연락주시기 바랍니다.
         </div>
       </div>
-
-
-
     {% endif %}
     <!-- CONTENT END -->
 

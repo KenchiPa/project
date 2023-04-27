@@ -2,8 +2,12 @@
 from django.urls import path
 from . import views
 
-# api/v1/users 
+app_name = 'users'
+
+# users/
 urlpatterns = [
-    path("me", views.Me.as_view()),
-    path("change-password", views.ChangePassword.as_view())
+    path('list/', views.user_list, name='user_list'),
+    path('search/', views.search, name='search'),
+    path('history/', views.history_list, name='history_list'),
+    path('history_search/', views.history_search, name='history_search'),
 ]

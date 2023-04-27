@@ -39,6 +39,8 @@ CUSTOM_APPS = [
     'board3.apps.Board3Config',
     'rest_framework',
     # 'rest_framework_simplejwt',
+    'boardmapping.apps.BoardmappingConfig',
+    'comment.apps.CommentConfig',
 ]
 
 SYSTEM_APPS = [
@@ -60,6 +62,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 등록한 미들웨어
+    'common.middleware.SaveIpAddressMiddleware',  # 사용자의 IP 주소를 저장하는 미들웨어 추가
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -156,6 +161,12 @@ MARKDOWN_EXTENSIONS = [
     'markdown.extensions.fenced_code',  # 코드 블록 지원
     'markdown.extensions.codehilite',  # 하이라이팅
 ]
+
+# 로그인 성공후 이동하는 URL
+LOGIN_REDIRECT_URL = '/'
+
+# 로그아웃시 이동하는 URL
+LOGOUT_REDIRECT_URL = '/'
 
 # Auth
 AUTH_USER_MODEL = "users.User"

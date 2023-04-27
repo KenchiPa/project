@@ -12,15 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Board1',
+            name='Board3',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='작성일시')),
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='수정일시')),
                 ('month_number', models.CharField(max_length=11, unique=True, verbose_name='월번호')),
-                ('title', models.CharField(max_length=100)),
-                ('content', models.TextField()),
-                ('view_count', models.PositiveIntegerField(default=0)),
+                ('title', models.CharField(default='DEFAULT', max_length=100)),
+                ('content', models.TextField(default='DEFAULT')),
             ],
             options={
                 'abstract': False,

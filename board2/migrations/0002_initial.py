@@ -11,19 +11,19 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('boardmapping', '__first__'),
-        ('board1', '0001_initial'),
+        ('board2', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='board1',
+            model_name='board2',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='board1', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='board2', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
-            model_name='board1',
+            model_name='board2',
             name='board_mapping',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='board1', to='boardmapping.boardmapping'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='board2', to='boardmapping.boardmapping'),
         ),
     ]

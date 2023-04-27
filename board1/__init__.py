@@ -1,0 +1,1 @@
+default_app_config = 'board1.apps.Board1Config'

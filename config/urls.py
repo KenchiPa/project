@@ -24,13 +24,20 @@ urlpatterns = [
  
     # Page
     path("", views.index, name='index'),
-    path("login/", views.login_view, name='login_view'),
+    # path("login/", views.login_view, name='login'),
+    # path("logout/", views.logout_view, name='logout'),
 
     # Auth
-    path("api/v1/users/", include("users.urls")),
+    # path("api/v1/users/", include("users.urls")),
 
     # Board
     path("board1/", include("board1.urls")),
     path("board2/", include("board2.urls")),
     path("board3/", include("board3.urls")),
+
+    # Common
+    path("common/", include('common.urls')),
+
+    # User
+    path("users/", include('users.urls')),
 ]
