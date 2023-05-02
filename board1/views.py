@@ -88,17 +88,6 @@ def board1_search(request):
         page_obj = paginator.get_page(page_number)
         return render(request, 'common/post_list.html', {'posts': page_obj})
 
-# def comment_new(request):
-#     if request.method == "POST":
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.author = request.user
-#             comment.save()
-#             return redirect('post_detail', pk=comment.post.pk)
-   
-
-
 def update_order(request): 
     if request.method == 'POST':
         old_orders = Board1.objects.order_by('-month_number')
