@@ -18,18 +18,22 @@
     {% include 'includes/header.html' %}
 
 
-    {% if user.is_authenticated and user.is_manager %}
+    {% if user.is_authenticated %}
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <a class="btn btn-outline-secondary me-md-2" type="button" href="{% url 'board1:board1_list' %}">목록</a>
+              {% if user.is_manager %}
                 <a class="btn btn-outline-secondary me-md-2" type="button" href="{% url 'board1:board1_edit' pk=post.pk %}">수정</a>
-                <a class="btn btn-outline-danger" type="button" href="{% url 'board1:board1_delete' pk=post.month_number %}">삭제</a>
+                <a class="btn btn-outline-danger" type="button" onclick="confirm('정말로 삭제 하시겠습니까?')" href="{% url 'board1:board1_delete' pk=post.month_number %}">삭제</a>
+              {% endif %}
               </div>
           <h1 class="display-5 fw-bold">{{post.title}}</h1>
           <h5 class="display-9 text-end">작성자 - {{post.author}}</h5>
           <h6 class="display-9 text-end">생성일시 - {{post.created_at}}</h6>
+          {% if user.is_manager %}
           <h6 class="display-9 text-end">수정일시 - {{post.updated_at}}</h6>
+          {% endif %}
           <p class="col-md-8 fs-4">{{post.content}}</p>
           
         </div>

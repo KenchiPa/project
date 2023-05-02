@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from board1.models import Board1
-from board2.models import Board2
-from board3.models import Board3
-from boardmapping.models import BoardMapping
+
+
 
 
 def index(request):
+    print('index request.user : ', request.user)
     # user = request.user
     # print('user : ', user)
 
@@ -33,6 +33,9 @@ def index(request):
 
 
     return render(request, 'index.html')
+
+def custom_page_not_found_view(request, exception):
+    return render(request, 'error/404.html', status=404)
 
 
 

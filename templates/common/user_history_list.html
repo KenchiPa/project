@@ -20,7 +20,7 @@
     {% if user.is_authenticated and user.is_manager %}
     <div class="card border-dark" style="width: 1100px; margin: 100px auto;">
       <h4 class="card-header">
-        사용자 로그인 히스토리 조회 
+        <strong class="d-inline-block mb-2 text-primary">사용자 로그인 이력 조회</strong> 
         <div>
         <form action="{% url 'users:history_search' %}" method="get">
         <input type="search" class="form-control" name="search" placeholder="검색..." aria-label="Search" style="width: 200px; margin-left: 780px; display: inline-block;"> 

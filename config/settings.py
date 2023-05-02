@@ -26,20 +26,19 @@ SECRET_KEY = 'django-insecure-0d-t2_cbcol(hh(l7n=*!j%fw%)7!yg!ecq87z&$y8lsy#+@kh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
 
 CUSTOM_APPS = [
+    'mappingboards.apps.MappingboardsConfig',
     'common.apps.CommonConfig',
     'users.apps.UsersConfig',
     'board1.apps.Board1Config',
     'board2.apps.Board2Config',
     'board3.apps.Board3Config',
     'rest_framework',
-    # 'rest_framework_simplejwt',
-    'boardmapping.apps.BoardmappingConfig',
     'comment.apps.CommentConfig',
 ]
 
@@ -170,6 +169,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Auth
 AUTH_USER_MODEL = "users.User"
+
+
 
 # REST FRAMEWORK
 # REST_FRAMEWORK = {

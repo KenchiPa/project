@@ -23,7 +23,7 @@
         <div class="row justify-content-center">
           <div class="col-md-9">
             <div class="card w-100 border-dark">
-              <h4 class="card-header">계정생성</h4>
+              <h4 class="card-header"><strong class="d-inline-block mb-2 text-primary">계정생성</strong></h4>
               <div class="card-body">
                 {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
@@ -38,6 +38,7 @@
                 {% endif %}
                 <form method="post" action="{% url 'common:signup' %}">
                   {% csrf_token %}
+                  <!-- {{ form.as_p }} -->
                   <div class="mb-3 row">
                     <label for="username" class="col-sm-2 col-form-label">유저네임</label>
                     <div class="col-sm-10">
@@ -64,9 +65,9 @@
                   </div><div class="mb-3 row">
                     <label for="gender" class="col-sm-2 col-form-label">성별</label>
                     <div class="col-sm-2" style="padding-top: 5px;">
-                        <input class="form-check-input" type="checkbox" id="male" value="M">
+                        <input class="form-check-input gender" type="checkbox" name="gender" id="male" value="M">
                         <label class="form-check-label" for="male">남</label>
-                        <input class="form-check-input" type="checkbox" id="female" value="F">
+                        <input class="form-check-input gender" type="checkbox" name="gender" id="female" value="F">
                         <label class="form-check-label" for="female">여</label>
                     </div>
                   </div><div class="mb-3 row">
@@ -78,6 +79,18 @@
                     <label for="phone_number" class="col-sm-2 col-form-label">휴대전화</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ form.phone_number.value | default_if_none:'' }}">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="phone_number" class="col-sm-2 col-form-label">허용 게시판</label>
+                    <div class="col-sm-10">
+                      <select class="form-select" aria-label="Default select example" name="board_permissions" id="id_board_permissions">
+                        <option selected value="0">메뉴를 선택해주세요(No Permission).</option>
+                        <option value="1">Board1</option>
+                        <option value="2">Board2</option>
+                        <option value="3">Board3</option>
+                        <option value="4">Board1, Board2, Board3</option>
+                      </select>
                     </div>
                   </div>
                   <div class="mb-3 row">
@@ -108,6 +121,8 @@
           </div>
         </div>
       </div>
+
+      
 
       {% else %}
       <div class="px-4 py-5 my-5 text-center">
@@ -140,6 +155,20 @@
           is_superuser.disabled = true;
           is_superuser.checked = false;
         }
+      }
+
+      const checkboxes = document.querySelectorAll('.gender');
+
+      for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener('click', function() {
+          const checked = document.querySelectorAll('.gender:checked');
+          if (checked.length > 1) {
+            for (let j = 0; j < checkboxes.length; j++) {
+              checkboxes[j].checked = false;
+            }
+            this.checked = true;
+          }
+        });
       }
       </script>
   </body>

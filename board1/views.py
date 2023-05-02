@@ -5,7 +5,11 @@ from django.db.models import Q
 from .forms import Board1Form
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.decorators import login_required, user_passes_test
 
+
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='Free Board1 Users').exists())
 def board1_list(request):
     if request.method == "POST":
         posts = Board1.objects.order_by('-month_number').values('title','content','author__username','view_count','created_at','updated_at','month_number')
@@ -19,12 +23,16 @@ def board1_list(request):
         page_obj = paginator.get_page(page_number)
         return render(request, 'common/post_list.html', {'posts': page_obj})
 
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='Free Board1 Users').exists())
 def board1_detail(request, pk):
     post = get_object_or_404(Board1, pk=pk)
     post.increase_view_count()  # 조회수 증가
     # comments = Comment.objects.filter(post=post).order_by('-created_at')
     return render(request, 'common/post_detail.html', {'post': post})
 
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='Free Board1 Users').exists())
 def board1_new(request):
     if request.method == "POST":
         form = Board1Form(request.POST)
@@ -39,6 +47,8 @@ def board1_new(request):
         form = Board1Form()
     return render(request, 'common/post_edit.html', {'form': form})
 
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='Free Board1 Users').exists())
 def board1_edit(request, pk):
     post = get_object_or_404(Board1, pk=pk)
     if request.method == "POST":
@@ -52,11 +62,15 @@ def board1_edit(request, pk):
         form = Board1Form(instance=post)
     return render(request, 'common/post_edit.html', {'form': form, 'pk': post.pk})
 
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='Free Board1 Users').exists())
 def board1_delete(request, pk):
     post = get_object_or_404(Board1, pk=pk)
     post.delete()
     return redirect('board1:board1_list')
 
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='Free Board1 Users').exists())
 def board1_search(request):
     query = request.GET.get('search')
     if query:

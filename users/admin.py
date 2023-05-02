@@ -18,7 +18,12 @@ class CustomUserAdmin(UserAdmin):
                     "email", 
                     "phone_number",
                     "is_manager",
-                    "access_site"
+                    "access_site",
+                    "board_permissions",
+                    # "board1_permission",
+                    # "board2_permission",
+                    # "board3_permission",
+                    # "permission"
                     # "can_see", 
                 ),
                 "classes": ("wide",),
@@ -76,6 +81,11 @@ class CustomUserAdmin(UserAdmin):
         "is_manager",
         "is_staff",
         "access_site",
+        "board_permissions",
+        # "board1_permission",
+        # "board2_permission",
+        # "board3_permission",
+        # "permission",
         # "can_see"
     )
 

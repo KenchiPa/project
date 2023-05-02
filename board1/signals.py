@@ -4,7 +4,7 @@ from django.db.models import F, IntegerField
 from django.db.models import CharField, IntegerField
 from django.dispatch import receiver
 from common.models import CommonModel
-from boardmapping.models import BoardMapping
+
 from common.fields import MarkdownField
 from django.utils import timezone
 from django.db.models.functions import Substr, Cast

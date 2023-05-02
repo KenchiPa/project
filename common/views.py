@@ -12,6 +12,8 @@ from django.contrib.auth import get_user_model
 from django.views.generic.edit import FormView
 from .forms import MyLoginForm
 from users.models import User
+from mappingboards.models import UserBoard
+
 
 
 # from .forms import SignUpForm
@@ -59,6 +61,8 @@ def SignUpView(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
+            # user = form.save(commit=False)
+            # user.save()
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -68,3 +72,5 @@ def SignUpView(request):
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form': form})
+
+

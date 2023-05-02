@@ -31,7 +31,7 @@
     
     <div class="card border-dark" style="width: 1100px; margin: 100px auto;">
       <h4 class="card-header">
-        사용자 조회 
+        <strong class="d-inline-block mb-2 text-primary">사용자 조회</strong> 
         <div>
         <form action="{% url 'users:search' %}" method="get">
         <input type="search" class="form-control" name="search" placeholder="검색..." aria-label="Search" style="width: 200px; margin-left: 780px; display: inline-block;"> 
@@ -50,6 +50,7 @@
               <th scope="col">EMAIL</th>
               <th scope="col">IS_MANAGER</th>
               <th scope="col">IS_SUPERUSER</th>
+              <th scope="col">BOARD_PERMISSION</th>
             </tr>
           </thead>
           <tbody class="table-group-divider">
@@ -62,6 +63,17 @@
               <td>{{ user.email }}</td>
               <td>{{ user.is_manager }}</td>
               <td>{{ user.is_superuser }}</td>
+              <td>{% if user.board_permissions == '0' %}
+                No Board
+              {% elif user.board_permissions == '1' %}
+                Board1
+              {% elif user.board_permissions == '2' %}
+                Board2
+              {% elif user.board_permissions == '3' %}
+                Board3
+              {% elif user.board_permissions == '4' %}
+                All Board
+              {% endif %}</td>
             </tr>
             {% endfor %}
            

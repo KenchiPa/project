@@ -11,3 +11,4 @@ urlpatterns = [
     path('change_password/', change_password, name='change_password'),
     path('signup/', SignUpView, name='signup'),
 ]
+

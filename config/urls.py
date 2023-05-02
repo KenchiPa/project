@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+
+
 urlpatterns = [
     # Admin page path setting
     path("admin/", admin.site.urls),
@@ -40,4 +42,9 @@ urlpatterns = [
 
     # User
     path("users/", include('users.urls')),
+
 ]
+
+
+# 404
+handler404 = 'config.views.custom_page_not_found_view'
